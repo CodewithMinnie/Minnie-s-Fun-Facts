@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minnie's Fun Facts</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #a15b1a, #fffbf7);
+            text-align: center;
+        }
+        img {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+            border-radius: 50%;
+            border: 3px solid #ab601a;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #a65407;
+            color: white;
+        }
+        button:hover {
+            background-color: #824207;
+        }
+        #fact {
+            font-size: 18px;
+            margin-top: 15px;
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <img src="Minnie-bitmoji.png" alt="Minnie the Cocker Spaniel">
+    <h1>Minnie's Fun Facts</h1>
+    <p id="fact">Click the button to reveal a fun fact!</p>
+    <button onclick="getFact()">Get a Fun Fact</button>
+
+    <script>
+        async function getFact() {
+            try {
+                const response = await fetch('https://uselessfacts.jsph.pl/random.json?language=en');
+                const data = await response.json();
+                document.getElementById('fact').innerText = data.text;
+            } catch (error) {
+                document.getElementById('fact').innerText = "Oops! Something went wrong.";
+            }
+        }
+    </script>
+</body>
+</html>
